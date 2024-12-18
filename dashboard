@@ -1,0 +1,71 @@
+import customtkinter as ctk
+from matplotlib.figure import Figure
+from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
+
+# Configuração do CustomTkinter
+ctk.set_appearance_mode("dark")  # Tema escuro
+ctk.set_default_color_theme("dark-blue")  # Tema azul escuro
+
+class DashboardApp(ctk.CTk):
+    def __init__(self):
+        super().__init__()
+        
+        # Configurações da Janela
+        self.title("Dashboard CustomTkinter")
+        self.geometry("900x600")
+
+        # Frame Principal
+        self.grid_columnconfigure(1, weight=1)
+        self.grid_rowconfigure(0, weight=1)
+
+        # Menu Lateral
+        self.sidebar_frame = ctk.CTkFrame(self, width=200)
+        self.sidebar_frame.grid(row=0, column=0, sticky="nsw", padx=10, pady=10)
+
+        self.sidebar_label = ctk.CTkLabel(self.sidebar_frame, text="Menu", font=("Arial", 20))
+        self.sidebar_label.pack(pady=(20, 10))
+
+        self.btn_1 = ctk.CTkButton(self.sidebar_frame, text="Botão 1", command=self.action_1)
+        self.btn_1.pack(pady=10)
+
+        self.btn_2 = ctk.CTkButton(self.sidebar_frame, text="Botão 2", command=self.action_2)
+        self.btn_2.pack(pady=10)
+
+        self.btn_3 = ctk.CTkButton(self.sidebar_frame, text="Sair", command=self.quit)
+        self.btn_3.pack(pady=10)
+
+        # Conteúdo Principal
+        self.main_frame = ctk.CTkFrame(self)
+        self.main_frame.grid(row=0, column=1, sticky="nsew", padx=10, pady=10)
+        self.main_frame.grid_columnconfigure(0, weight=1)
+
+        self.title_label = ctk.CTkLabel(self.main_frame, text="Dashboard", font=("Arial", 24))
+        self.title_label.pack(pady=20)
+
+        # Gráfico
+        self.create_graph()
+
+    def create_graph(self):
+        # Criar gráfico com Matplotlib
+        fig = Figure(figsize=(5, 3), dpi=100)
+        ax = fig.add_subplot(111)
+        ax.plot([0, 1, 2, 3, 4], [10, 20, 25, 30, 40], marker="o")
+        ax.set_title("Gráfico Exemplo")
+        ax.set_xlabel("Eixo X")
+        ax.set_ylabel("Eixo Y")
+
+        # Renderizar o gráfico no Tkinter
+        canvas = FigureCanvasTkAgg(fig, master=self.main_frame)
+        canvas_widget = canvas.get_tk_widget()
+        canvas_widget.pack(pady=20)
+
+    def action_1(self):
+        print("Botão 1 clicado!")
+
+    def action_2(self):
+        print("Botão 2 clicado!")
+
+if __name__ == "__main__":
+    app = DashboardApp()
+    app.mainloop()
+
