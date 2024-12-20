@@ -1,0 +1,122 @@
+/* Estilo geral do corpo */
+body {
+    display: flex;
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+/* Estilo da sidebar */
+#sidebar {
+    min-height: 100vh;
+    background-color: #343a40; /* Cor escura */
+    color: white;
+    transition: width 0.3s ease; /* Transição suave para expandir/recolher */
+    overflow: hidden;
+}
+
+/* Links dentro da sidebar */
+#sidebar a {
+    color: white;
+    text-decoration: none;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    border-radius: 4px;
+}
+
+#sidebar a:hover {
+    background-color: #495057; /* Cor mais clara no hover */
+}
+
+/* Ícones e textos nos links */
+#sidebar a i {
+    font-size: 20px;
+	
+}
+
+/* Estado expandido */
+.sidebar-expanded {
+	width: 200px;
+	transition: width 0.3s ease;
+}
+
+/* Estado recolhido */
+.sidebar-collapsed {
+	width: 80px;
+	transition: width 0.3s ease;
+}
+
+/* Oculta os textos ao recolher */
+.sidebar-collapsed .nav-link span {
+    display: none; /* Oculta o texto ao lado dos ícones */
+}
+.nav-link {
+	display: flex;
+	align-items: center;
+	padding: 10px;
+}
+
+.nav-link span {
+    vertical-align: middle; /* Garante alinhamento vertical do texto com o ícone */
+}
+
+.nav-link i {
+    margin-right: 8px; /* Adiciona um espaçamento entre o ícone e o texto */
+    vertical-align: middle; /* Centraliza o ícone verticalmente */
+	font-size: 1.2rem;
+}
+
+/* Sub-menu*/
+.sidebar .menu-item {
+    padding: 10px;
+    text-align: center;
+    border-bottom: 1px solid #495057;
+    cursor: pointer;
+}
+
+.sidebar .menu-item:hover {
+    background-color: #495057;
+}
+
+/* Sub-menu (inicialmente escondido) */
+.sub-menu {
+    display: none;
+    background-color: #495057;
+}
+
+.menu-item:hover .sub-menu {
+    display: block;
+}
+
+.sub-menu li {
+    padding: 10px;
+    text-align: left;
+}
+
+.sub-menu li:hover {
+    background-color: #343a40;
+}
+
+/* Estilo do botão de alternância */
+#toggleSidebar {
+    margin: 15px;
+    font-size: 20px;
+    padding: 5px 10px;
+    background-color: #343a40;
+	border-bottom: 1px solid #444;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#toggleSidebar:hover {
+    background-color: #6c757d;
+}
+
+/* Estilo adicional para a área principal */
+main {
+    flex-grow: 1;
+    padding: 20px;
+    background-color: #f8f9fa; /* Fundo claro para contraste */
+}
